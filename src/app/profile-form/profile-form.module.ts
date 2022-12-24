@@ -21,5 +21,5 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 export class ProfileFormModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(faCheck, faExclamationCircle);
-}
+  }
 }

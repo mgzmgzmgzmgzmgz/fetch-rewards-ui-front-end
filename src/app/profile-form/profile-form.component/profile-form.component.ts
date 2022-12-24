@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FetchHttpService, ProfileFormBody, State } from 'src/app/services/fetch-http.service/fetch-http.service';
+import { FetchHttpService, State } from 'src/app/services/fetch-http.service/fetch-http.service';
 
 @Component({
   selector: 'app-profile-form',
@@ -24,15 +25,11 @@ export class ProfileFormComponent implements OnInit, OnDestroy {
   private subs = new Subscription();
 
   public get stateIsInvalid(): boolean {
-    return ((this.submitClicked &&
-      !!this.profileForm?.get('state')?.invalid) ||
-      this.profileForm?.get('state')?.value !== this.defaultState);
+    return !!this.profileForm?.get('state')?.invalid;
   }
 
   public get occupationIsInvalid(): boolean {
-    return ((this.submitClicked && 
-      !!this.profileForm?.get('occupation')?.invalid) ||
-      this.profileForm?.get('occupation')?.value !== this.defaultOccupation);
+    return !!this.profileForm?.get('occupation')?.invalid;
   }
 
   public get invalidFullNameText(): string {
@@ -82,7 +79,8 @@ export class ProfileFormComponent implements OnInit, OnDestroy {
 
   constructor(
       private fb: FormBuilder,
-      private fetchHttpService: FetchHttpService
+      private fetchHttpService: FetchHttpService,
+      private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -111,15 +109,15 @@ export class ProfileFormComponent implements OnInit, OnDestroy {
   public onSubmit(): void {
     this.submitClicked = true;
     if (this.allFieldsAreValid()) {
-      const requestBody: ProfileFormBody = {
+      this.subs.add(this.fetchHttpService.submitTheForm({
         name: this.getVal('fullName'),
         email: this.getVal('email'),
         occupation: this.getVal('occupation'),
         state: this.getVal('state'),
         password: this.getVal('password')
-      }
-      console.log(requestBody);
-      // this.fetchHttpService.submitTheForm(pF).subscribe();
+      }).subscribe(res => {
+        this.router.navigate(['form-submitted'])
+      }));
     }
   }
 }

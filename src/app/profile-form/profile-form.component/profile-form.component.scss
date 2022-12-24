@@ -1,17 +1,22 @@
-$green: rgb(46, 163, 46);
-$red: #dc3545;
-$grey: rgb(198, 198, 198);
+@import '../../../styles.scss';
 
 .form-and-button-container {
-    border: $grey solid 0.2em;
-    border-radius: 0.5em;
-    padding: 2em;
-    margin: 1em;
-    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
 
     .form-div {
+        background-color: rgba(255, 255, 255, 0.6);
         display: flex;
         flex-direction: column;
+        // border: $grey solid 0.2em;
+        border-radius: 0.5em;
+        padding: 2em;
+        width: 70vw;
+        
 
         .label-input-container {
             max-width: 20em;
@@ -49,6 +54,10 @@ $grey: rgb(198, 198, 198);
                 font-size: 0.8em;
                 width: 20em;
             }
+        }
+
+        .submit-button {
+            width: 5em;
         }
     }
 }

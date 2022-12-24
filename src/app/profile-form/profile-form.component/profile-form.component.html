@@ -51,7 +51,7 @@
             <div class="label-icon-container">
                 <label class="form-label" for="occupation">Occupation</label>
                 <fa-icon class="valid" *ngIf="!occupationIsInvalid && submitClicked" icon="check"></fa-icon>
-                <fa-icon class="invalid" *ngIf="!!occupationIsInvalid" icon="exclamation-circle"></fa-icon>
+                <fa-icon class="invalid" *ngIf="occupationIsInvalid && submitClicked" icon="exclamation-circle"></fa-icon>
             </div>
             <select [ngClass]="{ 'invalid': occupationIsInvalid }" placeholder="Select an occupation" class="form-control" id="occupation" formControlName="occupation">
                 <option value="" disabled selected>{{ defaultOccupation }}</option>
@@ -68,7 +68,7 @@
             <div class="label-icon-container">
                 <label class="form-label" for="state">State</label>
                 <fa-icon class="valid" *ngIf="!stateIsInvalid && submitClicked" icon="check"></fa-icon>
-                <fa-icon class="invalid" *ngIf="!!stateIsInvalid" icon="exclamation-circle"></fa-icon>
+                <fa-icon class="invalid" *ngIf="stateIsInvalid && submitClicked" icon="exclamation-circle"></fa-icon>
             </div>
             <select [ngClass]="{ 'invalid': stateIsInvalid }" placeholder="Select a state" id="state" formControlName="state">
                 <option value="" disabled selected>{{ defaultState }}</option>
@@ -80,6 +80,6 @@
                 <span *ngIf="stateIsInvalid"></span>
             </div>
         </div>
+        <button class="btn btn-primary submit-button" (click)="onSubmit()" type="submit">Submit</button>
     </div>
-    <button class="btn btn-primary" (click)="onSubmit()" type="submit">Submit</button>
 </div>

@@ -4,13 +4,13 @@ import { ProfileFormComponent } from './profile-form.component/profile-form.comp
 
 const routes: Routes = [
     {
-        path: 'profile-form',
+        path: '',
         component: ProfileFormComponent
     }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class ProfileFormRoutingModule { }

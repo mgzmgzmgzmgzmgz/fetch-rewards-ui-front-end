@@ -1,0 +1,28 @@
+$grey: rgb(198, 198, 198);
+$green: rgb(46, 163, 46);
+$red: #dc3545;
+
+.white {
+    color: white;
+}
+
+.large-h1-text {
+    font-size: 6em;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+.centered-flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.full-view-size {
+    min-height: 100vh;
+    min-width: 100vw;
+}

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProfileFormModule } from 'src/app/profile-form/profile-form.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -13,10 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
     providers: [],
     bootstrap: [AppComponent],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
-        ReactiveFormsModule,
-        ProfileFormModule,
         HttpClientModule
     ]
 })
