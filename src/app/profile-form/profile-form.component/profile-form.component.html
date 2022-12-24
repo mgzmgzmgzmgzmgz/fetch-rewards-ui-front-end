@@ -1,0 +1,85 @@
+<div class="form-and-button-container">
+    <div [formGroup]="profileForm" class="form-div form-group">
+        <div class="label-input-container">
+            <div class="label-icon-container">
+                <label class="form-label" for="fullName">Full Name</label>
+                <fa-icon class="valid" *ngIf="!invalidFullNameText && submitClicked" icon="check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!invalidFullNameText" icon="exclamation-circle"></fa-icon>
+            </div>
+            <input [ngClass]="{ 
+                'invalid': !!invalidFullNameText,
+                'valid': !invalidFullNameText && submitClicked
+            }" placeholder="Full name" class="form-control" id="fullName" type="text" formControlName="fullName">
+            <div class="error-message-container">
+                <span *ngIf="invalidFullNameText">{{ invalidFullNameText }}</span>
+            </div>
+        </div>
+      
+        <div class="label-input-container">
+            <div class="label-icon-container">
+                <label class="form-label" for="email">Email</label>
+                <fa-icon class="valid" *ngIf="!invalidFullNameText && submitClicked" icon="check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!invalidFullNameText" icon="exclamation-circle"></fa-icon>
+            </div>
+            <input [ngClass]="{
+                'invalid': !!invalidEmailText,
+                'valid': !invalidEmailText && submitClicked
+            }" placeholder="Email" class="form-control" id="email" type="text" formControlName="email">
+            <div class="error-message-container">
+                <span *ngIf="invalidEmailText">{{ invalidEmailText }}</span>
+            </div>
+        </div>
+      
+        <div class="label-input-container">
+            <div class="label-icon-container">
+                <label class="form-label" for="password">Password</label>
+                <fa-icon class="valid" *ngIf="!invalidFullNameText && submitClicked" icon="check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!invalidFullNameText" icon="exclamation-circle"></fa-icon>
+            </div>
+            <div class="input-and-icon">
+                <input [ngClass]="{
+                    'invalid': !!invalidPasswordText,
+                    'valid': !invalidPasswordText && submitClicked
+                }" placeholder="Password" class="form-control" id="password" type="text" formControlName="password">
+            </div>
+            <div class="error-message-container">
+                <span *ngIf="invalidPasswordText">{{ invalidPasswordText }}</span>
+            </div>
+        </div>
+    
+        <div class="label-input-container">
+            <div class="label-icon-container">
+                <label class="form-label" for="occupation">Occupation</label>
+                <fa-icon class="valid" *ngIf="!occupationIsInvalid && submitClicked" icon="check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!occupationIsInvalid" icon="exclamation-circle"></fa-icon>
+            </div>
+            <select [ngClass]="{ 'invalid': occupationIsInvalid }" placeholder="Select an occupation" class="form-control" id="occupation" formControlName="occupation">
+                <option value="" disabled selected>{{ defaultOccupation }}</option>
+                <ng-container *ngFor="let occupation of occupations">
+                    <option [value]="occupation">{{ occupation }}</option>
+                </ng-container>
+            </select>
+            <div class="error-message-container">
+                <span *ngIf="occupationIsInvalid">An occupation must be selected</span>
+            </div>
+        </div>
+      
+        <div class="label-input-container">
+            <div class="label-icon-container">
+                <label class="form-label" for="state">State</label>
+                <fa-icon class="valid" *ngIf="!stateIsInvalid && submitClicked" icon="check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!stateIsInvalid" icon="exclamation-circle"></fa-icon>
+            </div>
+            <select [ngClass]="{ 'invalid': stateIsInvalid }" placeholder="Select a state" id="state" formControlName="state">
+                <option value="" disabled selected>{{ defaultState }}</option>
+                <ng-container *ngFor="let state of states">
+                    <option [value]="state.abbreviation">{{ state.name }}</option>
+                </ng-container>
+            </select>
+            <div class="error-message-container">
+                <span *ngIf="stateIsInvalid"></span>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="onSubmit()" type="submit">Submit</button>
+</div>

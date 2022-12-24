@@ -1,0 +1,54 @@
+$green: rgb(46, 163, 46);
+$red: #dc3545;
+$grey: rgb(198, 198, 198);
+
+.form-and-button-container {
+    border: $grey solid 0.2em;
+    border-radius: 0.5em;
+    padding: 2em;
+    margin: 1em;
+    width: 95vw;
+
+    .form-div {
+        display: flex;
+        flex-direction: column;
+
+        .label-input-container {
+            max-width: 20em;
+            width: 7em;
+
+            .label-icon-container {
+                display: flex;
+                flex-direction: row;
+    
+                .valid {
+                    color: $green;
+                    border-color: $green;
+                }
+                
+                .invalid {
+                    color: $red;
+                    border-color: $red;
+                }
+
+                label {
+                    font-weight: bold;
+                    margin-right: 0.5em;
+                }
+            }
+
+            select, input {
+                height: 2em;
+                width: 65vw;
+                max-width: 40em;
+            }
+
+            .error-message-container {
+                height: 2.3em;
+                color: $red;
+                font-size: 0.8em;
+                width: 20em;
+            }
+        }
+    }
+}
