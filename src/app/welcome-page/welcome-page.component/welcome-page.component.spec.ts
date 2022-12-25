@@ -1,23 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { ngMocks, MockInstance, MockRenderFactory, MockBuilder } from 'ng-mocks';
+import { WelcomePageModule } from '../welcome-page.module';
 
 import { WelcomePageComponent } from './welcome-page.component';
 
 describe('WelcomePageComponent', () => {
-  let component: WelcomePageComponent;
-  let fixture: ComponentFixture<WelcomePageComponent>;
+  ngMocks.faster();
+  MockInstance.scope('all');
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ WelcomePageComponent ]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(WelcomePageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  const render = MockRenderFactory(WelcomePageComponent);
+  beforeAll(() => MockBuilder(WelcomePageComponent, [WelcomePageModule]));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = render();
+    expect(fixture.point.componentInstance).toBeTruthy();
+  });
+
+  describe('goToForm', () => {
+    it('should route to the profile-form when the button is clicked', () => {
+      MockInstance(Router, 'navigate', jest.fn());
+      const fixture = render();
+
+      const goToFormButton = ngMocks.find('button.btn-primary');
+      ngMocks.click(goToFormButton);
+
+      const router = ngMocks.get(Router);
+      expect(router.navigate).toBeCalledTimes(1);
+      expect(router.navigate).toBeCalledWith(['profile-form']);
+    });
   });
 });

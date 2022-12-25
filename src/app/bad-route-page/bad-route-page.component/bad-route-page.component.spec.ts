@@ -1,23 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { MockBuilder, MockInstance, MockRenderFactory, ngMocks } from 'ng-mocks';
+import { BadRoutePageModule } from '../bad-route-page.module';
 
 import { BadRoutePageComponent } from './bad-route-page.component';
 
 describe('BadRoutePageComponent', () => {
-  let component: BadRoutePageComponent;
-  let fixture: ComponentFixture<BadRoutePageComponent>;
+  ngMocks.faster();
+  MockInstance.scope('all');
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ BadRoutePageComponent ]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(BadRoutePageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  const render = MockRenderFactory(BadRoutePageComponent);
+  beforeAll(() => MockBuilder(BadRoutePageComponent, [BadRoutePageModule]));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = render();
+    expect(fixture.point.componentInstance).toBeTruthy();
+  });
+
+  describe('goToForm', () => {
+    it('should route to the profile-form when the button is clicked', () => {
+      MockInstance(Router, 'navigate', jest.fn());
+      const fixture = render();
+
+      const goToFormButton = ngMocks.find('button.btn-primary');
+      ngMocks.click(goToFormButton);
+
+      const router = ngMocks.get(Router);
+      expect(router.navigate).toBeCalledTimes(1);
+      expect(router.navigate).toBeCalledWith(['profile-form']);
+    });
   });
 });
