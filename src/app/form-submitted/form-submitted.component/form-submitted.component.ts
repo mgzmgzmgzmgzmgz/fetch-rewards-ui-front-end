@@ -11,22 +11,19 @@ export class FormSubmittedComponent implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
 
   ngOnInit(): void {
-    this.sub.add(timer(200, 200).pipe(take(7)).subscribe(() => {
+    let count = 20;
+    this.sub.add(timer(20, 20).pipe(take(7)).subscribe(() => {
       confetti({
-          angle: this.randomInRange(55, 125),
-          spread: this.randomInRange(50, 70),
-          particleCount: this.randomInRange(50, 100),
+          angle: count,
+          spread: 60,
+          particleCount: 100,
           origin: { y: 0.5 }
       });
+      count += 25;
     }));
   }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
-
-  private randomInRange(min: number, max: number) {
-    return Math.random() * (max - min) + min;
 }
-}
-
