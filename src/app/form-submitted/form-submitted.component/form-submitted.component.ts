@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import confetti from 'canvas-confetti';
 import { Subscription, take, timer } from 'rxjs';
 
@@ -9,6 +10,8 @@ import { Subscription, take, timer } from 'rxjs';
 })
 export class FormSubmittedComponent implements OnInit, OnDestroy {
   private sub: Subscription = new Subscription();
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     let count = 20;
@@ -25,5 +28,9 @@ export class FormSubmittedComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+  }
+
+  public startOver(): void {
+    this.router.navigate([''])
   }
 }
