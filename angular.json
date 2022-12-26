@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fetch-ui-take-home-test",
+            "outputPath": "dist/fetch-ui-take-home-test/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -98,6 +98,60 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/fetch-ui-take-home-test/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "fetch-ui-take-home-test:build:development",
+              "serverTarget": "fetch-ui-take-home-test:server:development"
+            },
+            "production": {
+              "browserTarget": "fetch-ui-take-home-test:build:production",
+              "serverTarget": "fetch-ui-take-home-test:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fetch-ui-take-home-test:build:production",
+              "serverTarget": "fetch-ui-take-home-test:server:production"
+            },
+            "development": {
+              "browserTarget": "fetch-ui-take-home-test:build:development",
+              "serverTarget": "fetch-ui-take-home-test:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

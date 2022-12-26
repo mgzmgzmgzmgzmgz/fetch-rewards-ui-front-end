@@ -1,79 +1,84 @@
 <div class="form-and-button-container">
     <div [formGroup]="profileForm" class="form-div form-group">
         <div class="label-input-container">
-            <div class="label-icon-container">
-                <label class="form-label" for="fullName">Full Name</label>
-                <fa-icon class="valid" *ngIf="!invalidFullNameText && submitClicked" icon="check"></fa-icon>
-                <fa-icon class="invalid" *ngIf="!!invalidFullNameText" icon="exclamation-circle"></fa-icon>
+            <label class="form-label" for="fullName">Full Name</label>
+            <div>
+                <fa-icon class="valid" *ngIf="!invalidFullNameText" icon="circle-check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!invalidFullNameText && submitClicked" icon="exclamation-circle"></fa-icon>
+                <input [ngClass]="{ 
+                    'red-border': !!invalidFullNameText && submitClicked,
+                    'green-border': !invalidFullNameText
+                }" placeholder="Ex: John Smith" class="form-control fc-custom-padding" id="fullName" type="text" formControlName="fullName">
             </div>
-            <input [ngClass]="{ 
-                'invalid': !!invalidFullNameText,
-                'valid': !invalidFullNameText && submitClicked
-            }" placeholder="Full name" class="form-control" id="fullName" type="text" formControlName="fullName">
             <div class="error-message-container">
-                <span *ngIf="invalidFullNameText">{{ invalidFullNameText }}</span>
+                <span *ngIf="invalidFullNameText && submitClicked">{{ invalidFullNameText }}</span>
             </div>
         </div>
       
         <div class="label-input-container">
-            <div class="label-icon-container">
-                <label class="form-label" for="email">Email</label>
-                <fa-icon class="valid" *ngIf="!invalidEmailText && submitClicked" icon="check"></fa-icon>
-                <fa-icon class="invalid" *ngIf="!!invalidEmailText" icon="exclamation-circle"></fa-icon>
-            </div>
-            <input [ngClass]="{
-                'invalid': !!invalidEmailText,
-                'valid': !invalidEmailText && submitClicked
-            }" placeholder="Email" class="form-control" id="email" type="text" formControlName="email">
-            <div class="error-message-container">
-                <span *ngIf="invalidEmailText">{{ invalidEmailText }}</span>
-            </div>
-        </div>
-      
-        <div class="label-input-container">
-            <div class="label-icon-container">
-                <label class="form-label" for="password">Password</label>
-                <fa-icon class="valid" *ngIf="!invalidPasswordText && submitClicked" icon="check"></fa-icon>
-                <fa-icon class="invalid" *ngIf="!!invalidPasswordText" icon="exclamation-circle"></fa-icon>
-            </div>
-            <div class="input-and-icon">
+            <label class="form-label" for="email">Email</label>
+            <div>
+                <fa-icon class="valid" *ngIf="!invalidEmailText" icon="circle-check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!invalidEmailText && submitClicked" icon="exclamation-circle"></fa-icon>
                 <input [ngClass]="{
-                    'invalid': !!invalidPasswordText,
-                    'valid': !invalidPasswordText && submitClicked
-                }" placeholder="Password" class="form-control" id="password" type="text" formControlName="password">
+                    'red-border': !!invalidEmailText && submitClicked,
+                    'green-border': !invalidEmailText
+                }" placeholder="Ex: example@gmail.com" class="form-control fc-custom-padding" id="email" type="text" formControlName="email">
             </div>
             <div class="error-message-container">
-                <span *ngIf="invalidPasswordText">{{ invalidPasswordText }}</span>
+                <span *ngIf="invalidEmailText && submitClicked">{{ invalidEmailText }}</span>
+            </div>
+        </div>
+      
+        <div class="label-input-container">
+            <label class="form-label" for="password">Password</label>
+            <div>
+                <fa-icon class="valid" *ngIf="!invalidPasswordText" icon="circle-check"></fa-icon>
+                <fa-icon class="invalid" *ngIf="!!invalidPasswordText && submitClicked" icon="exclamation-circle"></fa-icon>
+                <div class="input-and-icon">
+                    <input [ngClass]="{
+                        'red-border': !!invalidPasswordText && submitClicked,
+                        'green-border': !invalidPasswordText
+                    }" placeholder="Must be at least 13 characters" class="form-control fc-custom-padding" id="password" type="text" formControlName="password">
+            </div>
+            <div class="error-message-container">
+                <span *ngIf="invalidPasswordText && submitClicked">{{ invalidPasswordText }}</span>
             </div>
         </div>
     
         <div class="label-input-container">
-            <div class="label-icon-container">
-                <label class="form-label" for="occupation">Occupation</label>
-                <fa-icon class="valid" *ngIf="!occupationIsInvalid && submitClicked" icon="check"></fa-icon>
+            <label class="form-label" for="occupation">Occupation</label>
+            <div>
+                <fa-icon class="valid" *ngIf="!occupationIsInvalid" icon="circle-check"></fa-icon>
                 <fa-icon class="invalid" *ngIf="occupationIsInvalid && submitClicked" icon="exclamation-circle"></fa-icon>
+                <select class="pointer fc-custom-padding" [ngClass]="{
+                    'red-border': !!occupationIsInvalid && submitClicked,
+                    'green-border': !occupationIsInvalid
+                }" placeholder="Select an occupation" id="occupation" formControlName="occupation">
+                    <ng-container *ngFor="let occupation of occupations">
+                        <option [value]="occupation">{{ occupation }}</option>
+                    </ng-container>
+                </select>
             </div>
-            <select class="pointer" [ngClass]="{ 'invalid': occupationIsInvalid }" placeholder="Select an occupation" id="occupation" formControlName="occupation">
-                <ng-container *ngFor="let occupation of occupations">
-                    <option [value]="occupation">{{ occupation }}</option>
-                </ng-container>
-            </select>
             <div class="error-message-container">
                 <span *ngIf="occupationIsInvalid && submitClicked">An occupation must be selected</span>
             </div>
         </div>
       
         <div class="label-input-container">
-            <div class="label-icon-container">
-                <label class="form-label" for="state">State</label>
-                <fa-icon class="valid" *ngIf="!stateIsInvalid && submitClicked" icon="check"></fa-icon>
+            <label class="form-label" for="state">State</label>
+            <div>
+                <fa-icon class="valid" *ngIf="!stateIsInvalid" icon="circle-check"></fa-icon>
                 <fa-icon class="invalid" *ngIf="stateIsInvalid && submitClicked" icon="exclamation-circle"></fa-icon>
+                <select class="pointer fc-custom-padding" [ngClass]="{
+                    'red-border': !!stateIsInvalid && submitClicked,
+                    'green-border': !stateIsInvalid
+                }" placeholder="Select a state" id="state" formControlName="state">
+                    <ng-container *ngFor="let state of states">
+                        <option [value]="state.abbreviation">{{ state.name }}</option>
+                    </ng-container>
+                </select>
             </div>
-            <select class="pointer" [ngClass]="{ 'invalid': stateIsInvalid }" placeholder="Select a state" id="state" formControlName="state">
-                <ng-container *ngFor="let state of states">
-                    <option [value]="state.abbreviation">{{ state.name }}</option>
-                </ng-container>
-            </select>
             <div class="error-message-container">
                 <span *ngIf="stateIsInvalid && submitClicked">A state must be selected</span>
             </div>

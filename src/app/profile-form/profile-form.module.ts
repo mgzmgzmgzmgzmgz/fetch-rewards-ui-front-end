@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileFormRoutingModule } from './profile-form-routing.module';
 import { ProfileFormComponent } from './profile-form.component/profile-form.component';
-import { faCheck, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationCircle, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -20,6 +20,6 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 })
 export class ProfileFormModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faCheck, faExclamationCircle);
+    library.addIcons(faCircleCheck, faExclamationCircle);
   }
 }

@@ -20,30 +20,14 @@
         .label-input-container {
             width: 100%;
 
-            .label-icon-container {
-                display: flex;
-                flex-direction: row;
-    
-                .valid {
-                    color: $green;
-                    border-color: $green;
-                }
-                
-                .invalid {
-                    color: $red;
-                    border-color: $red;
-                }
-
-                label {
-                    font-weight: bold;
-                    margin-right: 0.5em;
-                }
+            label {
+                font-weight: bold;
+                margin-right: 0.5em;
             }
 
             select, input {
                 height: 2em;
                 width: 100%;
-                max-width: 40em;
             }
 
             select {
@@ -65,4 +49,32 @@
             width: 5em;
         }
     }
+}
+
+.fc-custom-padding {
+    padding: 0.375rem 1.5rem !important;
+}
+
+.green-border {
+    border-color: $green !important;
+    border: solid 0.12em;
+}
+
+.red-border {
+    border-color: $red !important;
+    border: solid 0.12em;
+}
+
+.valid {
+    color: $green;
+}
+
+.invalid {
+    color: $red;
+}
+
+fa-icon {
+    position: fixed;
+    margin-top: 0.25em;
+    margin-left: 0.3em;
 }

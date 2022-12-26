@@ -13,7 +13,7 @@ import { slideInAnimation } from './animations';
 export class AppComponent {
   title = 'fetch-ui-take-home-test';
 
-  constructor(private contexts: ChildrenOutletContexts) {}
+  constructor(private contexts: ChildrenOutletContexts) { }
 
   public getRouteAnimationData(): any {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
