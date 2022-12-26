@@ -19,8 +19,8 @@ export class ProfileFormComponent implements OnInit, OnDestroy {
     fullName: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
-    occupation: [this.defaultOccupation, Validators.required],
-    state: [this.defaultState, Validators.required],
+    occupation: ['', Validators.required],
+    state: ['', Validators.required],
   });
   private subs = new Subscription();
 

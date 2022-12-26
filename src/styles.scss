@@ -6,12 +6,39 @@ $red: #dc3545;
     color: white;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.purple-button {
+    background-color: purple !important;
+    border-color: purple !important;;
+    &:hover {
+        background-color: rgb(86, 0, 86) !important;
+        border-color: rgb(86, 0, 86) !important;
+    }
+}
+
 .large-h1-text {
     font-size: 6em;
 }
 
-p {
-    font-size: 1.5em;
+@media (min-width: 768px) {
+    .large-h1-text {
+        font-size: 6em;
+    }
+    p {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .large-h1-text {
+        font-size: 3em;
+    }
+    p {
+        font-size: 1em;
+    }
 }
 
 .centered-flex-column {
