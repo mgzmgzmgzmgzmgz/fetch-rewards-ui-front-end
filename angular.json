@@ -56,7 +56,13 @@
             },
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              },
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
@@ -112,7 +118,10 @@
               "outputHashing": "media"
             },
             "development": {
-              "optimization": false,
+              "optimization": {
+                "scripts": true,
+                "styles": true
+              },
               "sourceMap": true,
               "extractLicenses": false,
               "vendorChunk": true
