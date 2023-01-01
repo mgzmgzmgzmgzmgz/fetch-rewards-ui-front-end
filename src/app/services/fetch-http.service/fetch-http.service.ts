@@ -1,6 +1,8 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { Observable, of, tap } from 'rxjs';
 
 export interface State {
   name: string;
@@ -24,10 +26,19 @@ export interface ProfileFormBody {
   providedIn: 'root'
 })
 export class FetchHttpService {
-  constructor(private httpClient: HttpClient) { }
+  private readonly isBrowser: boolean = isPlatformBrowser(this.platformId);
+  private readonly OCC_AND_STATE_KEY = makeStateKey<OccupationsAndStates>('occs_and_state');
+
+  constructor(
+    private httpClient: HttpClient,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: any
+    ) { }
 
   public getOccupationsAndStates(): Observable<OccupationsAndStates> {
-    return this.httpClient.get<OccupationsAndStates>('https://frontend-take-home.fetchrewards.com/form');
+    const stateVal = this.transferState.get(this.OCC_AND_STATE_KEY, undefined);
+    const httpCall = this.httpClient.get<OccupationsAndStates>('https://frontend-take-home.fetchrewards.com/form').pipe(tap(res => this.transferState.set(this.OCC_AND_STATE_KEY, res)));
+    return stateVal ? of(stateVal) : httpCall;
   }
 
   public submitTheForm(form: ProfileFormBody): Observable<any> {
