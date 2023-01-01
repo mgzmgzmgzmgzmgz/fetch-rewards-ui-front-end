@@ -9,18 +9,18 @@ const routes: Routes = [
   },
   {
     path: 'form-submitted',
-    loadChildren: () => import('./form-submitted/form-submitted.module').then(m => m.FormSubmittedModule),
+    loadChildren: () => import('./title-para-button/title-para-button.module').then(m => m.TitleParaButtonModule),
     data: { animation: 'form-submitted' }
   },
   {
     path: '',
     pathMatch: 'full',
-    loadChildren: () => import('./welcome-page/welcome-page.module').then(m => m.WelcomePageModule),
+    loadChildren: () => import('./title-para-button/title-para-button.module').then(m => m.TitleParaButtonModule),
     data: { animation: 'welcome-page' }
   },
   {
     path: '**',
-    loadChildren: () => import('./bad-route-page/bad-route-page.module').then(m => m.BadRoutePageModule),
+    loadChildren: () => import('./title-para-button/title-para-button.module').then(m => m.TitleParaButtonModule),
     data: { animation: 'bad-route-page' }
   }
 ];
