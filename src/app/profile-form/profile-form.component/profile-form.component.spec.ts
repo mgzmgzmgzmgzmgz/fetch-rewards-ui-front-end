@@ -3,7 +3,7 @@ import { MockInstance, ngMocks, MockBuilder, MockRenderFactory } from 'ng-mocks'
 import { ProfileFormModule } from '../profile-form.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
-import { FetchHttpService } from 'src/app/services/fetch-http.service/fetch-http.service';
+import { FetchHttpService } from 'src/app/fetch-http.service/fetch-http.service';
 import { of } from 'rxjs/internal/observable/of';
 
 describe('ProfileFormComponent', () => {
@@ -22,8 +22,9 @@ describe('ProfileFormComponent', () => {
     expect(fixture.point.componentInstance).toBeTruthy();
   });
 
-  describe('', () => {
-    it('', () => {
+  describe('ngOnInit', () => {
+    it('should get the occupations and states from the fetch servce', () => {
+      const fixture = render();
       
     });
   });

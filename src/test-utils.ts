@@ -1,4 +1,4 @@
-import { OccupationsAndStates, ProfileFormBody, State } from "./app/services/fetch-http.service/fetch-http.service";
+import { OccupationsAndStates, ProfileFormBody, State } from "./app/fetch-http.service/fetch-http.service";
 
 export function anyAlphaString(len: number): string {
     const letters = 'abcdefghijklmnopqrstuvwxyz';

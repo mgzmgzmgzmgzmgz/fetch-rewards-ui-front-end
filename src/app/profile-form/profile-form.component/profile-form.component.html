@@ -83,6 +83,9 @@
                 <span *ngIf="stateIsInvalid && submitClicked">A state must be selected</span>
             </div>
         </div>
-        <button class="btn btn-primary purple-button" (click)="onSubmit()" type="submit">Submit</button>
+        <button *ngIf="!requestInProgress" class="btn btn-primary purple-button" (click)="onSubmit()" type="submit">Submit</button>
+        <button *ngIf="requestInProgress" class="btn btn-primary purple-button" disabled="true">
+            Submitted <div class="lds-ring"> <div></div> <div></div> <div></div> <div></div> </div>
+        </button>
     </div>
 </div>

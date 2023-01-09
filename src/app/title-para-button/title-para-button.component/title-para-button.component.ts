@@ -21,8 +21,7 @@ export interface Page {
 
 @Component({
   selector: 'app-title-para-button',
-  templateUrl: './title-para-button.component.html',
-  styleUrls: ['./title-para-button.component.scss']
+  templateUrl: './title-para-button.component.html'
 })
 export class TitleParaButtonComponent implements OnInit, OnDestroy {
   private readonly isBrowser: boolean = isPlatformBrowser(this.platformId);

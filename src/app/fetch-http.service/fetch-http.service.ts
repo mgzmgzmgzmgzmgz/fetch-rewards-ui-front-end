@@ -1,6 +1,5 @@
-import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
 import { Observable, of, tap } from 'rxjs';
 
@@ -26,13 +25,11 @@ export interface ProfileFormBody {
   providedIn: 'root'
 })
 export class FetchHttpService {
-  private readonly isBrowser: boolean = isPlatformBrowser(this.platformId);
   private readonly OCC_AND_STATE_KEY = makeStateKey<OccupationsAndStates>('occs_and_state');
 
   constructor(
     private httpClient: HttpClient,
-    private transferState: TransferState,
-    @Inject(PLATFORM_ID) private platformId: any
+    private transferState: TransferState
     ) { }
 
   public getOccupationsAndStates(): Observable<OccupationsAndStates> {
