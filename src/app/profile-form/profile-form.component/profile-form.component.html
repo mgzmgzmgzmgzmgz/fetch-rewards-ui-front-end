@@ -51,7 +51,7 @@
             <div>
                 <fa-icon class="valid" *ngIf="!occupationIsInvalid" icon="circle-check"></fa-icon>
                 <fa-icon class="invalid" *ngIf="occupationIsInvalid && submitClicked" icon="exclamation-circle"></fa-icon>
-                <select class="pointer fc-custom-padding" [ngClass]="{
+                <select data-testid="occ-selector" class="pointer fc-custom-padding" [ngClass]="{
                     'red-border': !!occupationIsInvalid && submitClicked,
                     'green-border': !occupationIsInvalid
                 }" placeholder="Select an occupation" id="occupation" formControlName="occupation">
@@ -70,7 +70,7 @@
             <div>
                 <fa-icon class="valid" *ngIf="!stateIsInvalid" icon="circle-check"></fa-icon>
                 <fa-icon class="invalid" *ngIf="stateIsInvalid && submitClicked" icon="exclamation-circle"></fa-icon>
-                <select class="pointer fc-custom-padding" [ngClass]="{
+                <select data-testid="state-selector" class="pointer fc-custom-padding" [ngClass]="{
                     'red-border': !!stateIsInvalid && submitClicked,
                     'green-border': !stateIsInvalid
                 }" placeholder="Select a state" id="state" formControlName="state">
@@ -80,10 +80,10 @@
                 </select>
             </div>
             <div class="error-message-container">
-                <span *ngIf="stateIsInvalid && submitClicked">A state must be selected</span>
+                <span *ngIf="stateIsInvalid && submitClicked" data-testid="invalid-state-span">A state must be selected</span>
             </div>
         </div>
-        <button *ngIf="!requestInProgress" class="btn btn-primary purple-button" (click)="onSubmit()" type="submit">Submit</button>
+        <button *ngIf="!requestInProgress" data-testid="submit-button" class="btn btn-primary purple-button" (click)="onSubmit()" type="submit">Submit</button>
         <button *ngIf="requestInProgress" class="btn btn-primary purple-button" disabled="true">
             Submitted <div class="lds-ring"> <div></div> <div></div> <div></div> <div></div> </div>
         </button>
