@@ -17,7 +17,7 @@ Once Node and npm are ready to go open a Terminal(Mac)/Command Prompt(Windows).
 
 Then cd into the project folder and run "sudo npm i" 
 
-Then run SSR mode locally use "sudo npm run dev:ssr"
+Then run SSR mode locally using "sudo npm run dev:ssr"
 
 You should eventually get a message that the app is being served to localhost:4200, and is ready to be viewed in your browser
 
